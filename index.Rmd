@@ -1,0 +1,60 @@
+---
+title       : How long do we expect to live 
+subtitle    : Life Expectancy report;data by World Bank
+author      : Andrew Kireru
+job         : Statistician
+framework   : io2012   # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : clean       # 
+widgets     : [bootstrap, quiz, shiny, interactive]            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+
+
+---
+
+## DEFINATIONS
+Life expectancy is the expected (in the statistical sense) number of years of life remaining at a given age. 
+
+Life expectancy vs. life span
+==========================
+
+Episode, "The Man Who Would Not Die" (About Count of St. Germain), where it is stated "Evidence recently discovered in the British Museum indicates that St. Germain may have well been the long lost third son of Rakoczi born in Transylvania in 1694. If he died in Germany in 1784, he lived 90 years. The average life expectancy in the 18th century was 35 years. Fifty was a ripe old age. Ninety... was forever."
+
+life expectancy generally quoted is the  birth number, which is in an average that includes all the babies that die before their first year of life as well as people that die from disease and war.
+
+http://en.wikipedia.org/wiki/Life_expectancy
+![alt text](myimage.jpg)
+![picture of andrew](andrew.jpg)
+<footer>by Andrew Kireru</footer>
+
+--- 
+
+## To the analysis of my data 
+The variables for this data are as follows;
+```{r,echo=T,results = 'asis'}
+data <- readRDS("healthexp.Rds")
+names(data)
+```
+
+I would like to use Life.Expectancy to see the areas in the world which have the lowest and highest life expectancy. i will then look at the general trend from 1995 to 2011 to see if the life expectancy has been increasing or reducing. all this i will base on a boxplot.
+My fist plot will be;life expectancy by Region followed by life expectancy by Year
+My shiny app shows the regions with the outliners and clearly shows areas and does show how to eliminate them. 
+
+---
+
+```{r,echo=T,fig.align = "left"}
+data <- readRDS("healthexp.Rds")
+boxplot(data$Life.Expectancy~data$Region, main="LIFE EXPECTANCY BY REGION")
+```
+according to the data, the life expectancy for Sub Saharan Africa is lowest  followed by south Asia ,The region with highest life expectancy is is North America.
+
+---
+
+Life expectancy has been increasing over the years
+
+```{r,echo=T,fig.align = "right",highlight=TRUE}
+data <- readRDS("healthexp.Rds")
+boxplot(data$Life.Expectancy~data$Year, main="LIFE EXPECTANCY BY yEAR")
+```
+       
+---
